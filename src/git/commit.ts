@@ -1,10 +1,10 @@
 import type { Octokit } from "@octokit/rest";
-import { type Ora } from "ora";
-import { messages, spinners } from "../ui";
-import { execSync } from "child_process";
-import { assertDefined } from "../util/assert";
 import type { Endpoints } from "@octokit/types";
 import chalk from "chalk";
+import { execSync } from "child_process";
+import type { Ora } from "ora";
+import { messages, spinners } from "../ui";
+import { assertDefined } from "../util/assert";
 
 interface GetLatestCommitFromBranchOptions {
     client: Octokit;
@@ -258,7 +258,4 @@ const cherryPickCommit = async (commit: Commit): Promise<CherryPickResult> => {
     }
 };
 
-export {
-    getAllCommitsFromPullRequest,
-    cherryPickCommit,
-};
+export { getAllCommitsFromPullRequest, cherryPickCommit };

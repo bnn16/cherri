@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: Restore dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npm run build
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+
+      - name: Restore dependencies
+        run: npm ci
+      
+      - name: Run lint
+        run: npm run lint
